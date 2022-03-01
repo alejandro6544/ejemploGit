@@ -7,10 +7,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="373.0" prefWidth="570.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ControlGUI.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="556.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ControlGUI.FXMLDocumentController">
     <children>
         <Button layoutX="140.0" layoutY="8.0" onAction="#bCirculo" text="Click Me!" />
-      <Canvas fx:id="lienzo" height="274.0" layoutX="-3.0" layoutY="99.0" width="577.0" />
       <Button layoutX="263.0" layoutY="8.0" onAction="#bTriangulo" text="Click Me!" />
+      <Pane layoutY="132.0" prefHeight="425.0" prefWidth="740.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Canvas fx:id="lienzo" height="425.0" layoutX="-1.0" onMouseClicked="#obtenerCoordenadas" onMouseDragged="#pintarC" width="740.0" />
+         </children>
+      </Pane>
     </children>
 </AnchorPane>
