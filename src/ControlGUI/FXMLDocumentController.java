@@ -30,6 +30,14 @@ public class FXMLDocumentController implements Initializable {
 
     GraphicsContext g;
 
+    double x[];
+    double y[];
+
+    double coorX;
+    double coorY;
+
+    int r;
+
     @FXML
     private void bCirculo(ActionEvent event) {
 
@@ -44,8 +52,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void obtenerCoordenadas(MouseEvent event) {
 
-//        double x = event.getX();
-//        double y = event.getY();
+        coorX = event.getX();
+        coorY = event.getY();
+        System.out.println("El Punto " + coorX + "," + coorY);
 //
 //        Punto2D punto = new Punto2D(x, y);
 //        g.setStroke(Color.BLUE);
@@ -54,31 +63,56 @@ public class FXMLDocumentController implements Initializable {
 ////        g.setFill(Color.CHOCOLATE);
 ////        g.fillOval(0, 0, 100, 100);
 //
-//        System.out.println("El Punto " + punto.toString());
 
     }
 
     @FXML
     private void pintarC(MouseEvent event) {
-        double x = event.getX();
-        double y = event.getY();
+        coorX = event.getX();
+        coorY = event.getY();
         g.setFill(Color.BLACK);
-        g.fillOval(x, y, 10, 10);
+        g.fillOval(coorX, coorY, 10, 10);
     }
 
     @FXML
     private void bTriangulo(ActionEvent event) {
-        double x[] = {50, 100, 0};
-        double y[] = {0, 100, 100};
+//         x[] = {50, 100, 0};
+//         y[] = {0, 100, 100};
         g.setStroke(Color.BLUE);
         g.setLineWidth(3);
         g.strokePolygon(x, y, 3);
     }
 
+    @FXML
+    private void pentagono(ActionEvent event) {
+        x = new double[5];
+        y = new double[5];
+
+        x[0] = (coorX + r * 2);
+        y[0] = coorY;
+
+        x[1] = coorX + (r * Math.cos(2 * Math.PI / 5) * 2);
+        y[1] = coorY - (r * Math.sin(2 * Math.PI / 5) * 2);
+
+        x[2] = coorX + (r * Math.cos(2 * 2 * Math.PI / 5) * 2);
+        y[2] = coorY - (r * Math.sin(2 * 2 * Math.PI / 5) * 2);
+
+        x[3] = coorX + (r * Math.cos(3 * 2 * Math.PI / 5) * 2);
+        y[3] = coorY - (r * Math.sin(3 * 2 * Math.PI / 5) * 2);
+
+        x[4] = coorX + (r * Math.cos(4 * 2 * Math.PI / 5) * 2);
+        y[4] = coorY - (r * Math.sin(4 * 2 * Math.PI / 5) * 2);
+
+        g.setStroke(Color.BLUE);
+        g.setLineWidth(3);
+        g.strokePolygon(x, y, 5);
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         g = lienzo.getGraphicsContext2D();
-
+        r = 60;
         double h = lienzo.getHeight();
         double w = lienzo.getWidth();
 
